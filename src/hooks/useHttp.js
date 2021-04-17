@@ -28,6 +28,9 @@ export const useHttp= (url, dependencies ) => {
           return fetch(`https://api.github.com/users/${user.login}`)
             .then(response => {
               if (!response.ok) {
+                if (response.status === 403) {
+                  throw new Error('Probably rate limited :o')
+                }
                 throw new Error('Failed to fetch user');
               }
               return response.json()

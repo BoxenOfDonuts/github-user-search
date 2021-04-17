@@ -4,6 +4,7 @@ import ResultsPage from './components/ResultsPage/ResultsPage';
 import SearchBar from './components/Searchbar/Searchbar';
 import { useEffect, useState } from 'react';
 import './App.css';
+import { fakeInfo } from './helpers/response';
 const searchUsersURL = 'https://api.github.com/search/users';
 
 
@@ -22,7 +23,8 @@ const App = () => {
 
   const setSearch = (search) => {
     const sanitizedSearch = sanitizeSearch(search);
-    setURL(`${searchUsersURL}?q=${sanitizedSearch}&per_page=10`)
+    // setURL(`${searchUsersURL}?q=${sanitizedSearch}&per_page=10`)
+    setResponse(fakeInfo)
   }
 
   useEffect(() => {
@@ -36,7 +38,7 @@ const App = () => {
       <NavBar didSearch={Boolean(response)} setSearch={setSearch} />
         <LandingPage>
           {!response && <SearchBar setSearch={setSearch} />}
-          {response && <ResultsPage userInfo={fetchedData} resultCount={resultCount} />}
+          {response && <ResultsPage userInfo={response} resultCount={resultCount} />}
         </LandingPage>
     </div>
   );

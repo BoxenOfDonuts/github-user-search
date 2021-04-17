@@ -110,4 +110,18 @@ const response = {
   ],
 };
 
-export default response;
+const fakeInfo = [
+  {
+    login: 'Kvothe',
+    avatar_url: 'https://avatars.githubusercontent.com/u/7082618?v=4',
+    name: 'Kvothe Arlindenson',
+    bio: 'I have stolen princesses back from sleeping barrow kings. \
+    I burned down the town of Trebon. I have spent the night with Felurian \
+    and left with both my sanity and my life. I was expelled from the University \
+    at a younger age than most people are allowed in.\
+      I tread paths by moonlight that others fear to speak of during day. \
+      I have talked to Gods, loved women, and written songs that make the minstrels weep.',
+  },
+]
+
+export {response, fakeInfo};
