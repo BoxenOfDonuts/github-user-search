@@ -1,8 +1,8 @@
-import response from '../../helpers/response';
-
-const ResultsPage = ()  => {
-  const numberOfResults = response.total_count;
-  const users = response.items;
+// import response from '../../helpers/response';
+const ResultsPage = ({ resultCount, userInfo })  => {
+  const numberOfResults = resultCount;
+  console.log(userInfo)
+  const users = userInfo;
 
   return (
     <div>
@@ -16,7 +16,7 @@ const SearchResults = ({ users }) => {
   console.log(users)
 
   const content = users.map(user => {
-    return <UserTab user={user} />
+    return <UserCard user={user} />
   })
 
   return (
@@ -26,8 +26,17 @@ const SearchResults = ({ users }) => {
   );
 }
 
-const UserTab = ({ user }) => {
-  return <li>{user.login}</li>;
+const UserCard = ({ user }) => {
+  return (
+    <div className="user-card">
+      <img className="left-icon gravatar" alt='user gravatar' src={user.avatar_url} />
+      <p>{user.name}</p>
+      <p>{user.login}</p>
+      <p>{user.bio}</p>
+    </div>
+  );
+
+  // return <li>{user.login}</li>;
 }
 
 const ResultsHeader = ({ numberOfResults }) => {
