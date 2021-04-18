@@ -1,4 +1,6 @@
-// import response from '../../helpers/response';
+import './Results.css';
+import UserCard from '../UserCard/UserCard';
+
 const ResultsPage = ({ resultCount, userInfo })  => {
   const numberOfResults = resultCount;
   console.log(userInfo)
@@ -16,7 +18,7 @@ const SearchResults = ({ users }) => {
   console.log(users)
 
   const content = users.map(user => {
-    return <UserCard user={user} />
+    return <UserCard key={user.login} user={user} />
   })
 
   return (
@@ -24,19 +26,6 @@ const SearchResults = ({ users }) => {
       {content}
     </ul>
   );
-}
-
-const UserCard = ({ user }) => {
-  return (
-    <div className="user-card">
-      <img className="left-icon gravatar" alt='user gravatar' src={user.avatar_url} />
-      <p>{user.name}</p>
-      <p>{user.login}</p>
-      <p>{user.bio}</p>
-    </div>
-  );
-
-  // return <li>{user.login}</li>;
 }
 
 const ResultsHeader = ({ numberOfResults }) => {
