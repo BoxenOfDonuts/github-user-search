@@ -112,16 +112,39 @@ const response = {
 
 const fakeInfo = [
   {
-    login: 'Kvothe',
-    avatar_url: 'https://avatars.githubusercontent.com/u/7082618?v=4',
-    name: 'Kvothe Arlindenson',
-    bio: 'I have stolen princesses back from sleeping barrow kings. \
-    I burned down the town of Trebon. I have spent the night with Felurian \
-    and left with both my sanity and my life. I was expelled from the University \
-    at a younger age than most people are allowed in.\
-      I tread paths by moonlight that others fear to speak of during day. \
-      I have talked to Gods, loved women, and written songs that make the minstrels weep.',
-  },
+    "login": "BoxenOfDonuts",
+    "id": 7082618,
+    "node_id": "MDQ6VXNlcjcwODI2MTg=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/7082618?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/BoxenOfDonuts",
+    "html_url": "https://github.com/BoxenOfDonuts",
+    "followers_url": "https://api.github.com/users/BoxenOfDonuts/followers",
+    "following_url": "https://api.github.com/users/BoxenOfDonuts/following{/other_user}",
+    "gists_url": "https://api.github.com/users/BoxenOfDonuts/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/BoxenOfDonuts/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/BoxenOfDonuts/subscriptions",
+    "organizations_url": "https://api.github.com/users/BoxenOfDonuts/orgs",
+    "repos_url": "https://api.github.com/users/BoxenOfDonuts/repos",
+    "events_url": "https://api.github.com/users/BoxenOfDonuts/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/BoxenOfDonuts/received_events",
+    "type": "User",
+    "site_admin": false,
+    "name": null,
+    "company": null,
+    "blog": "joelhacke.com",
+    "location": 'Planet Earth',
+    "email": 'joel.hacke@gmail.com',
+    "hireable": null,
+    "bio": 'Fake Bio info, just for testing. I love coffee and science fiction books',
+    "twitter_username": null,
+    "public_repos": 30,
+    "public_gists": 0,
+    "followers": 1,
+    "following": 2,
+    "created_at": "2014-03-27T15:05:47Z",
+    "updated_at": "2021-04-17T22:05:10Z"
+  }
 ]
 
 export {response, fakeInfo};
