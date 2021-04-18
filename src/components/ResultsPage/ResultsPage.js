@@ -1,15 +1,28 @@
 import './Results.css';
 import UserCard from '../UserCard/UserCard';
+import Pagination from '../Pagination/Pagination';
+import { useState } from 'react';
 
 const ResultsPage = ({ resultCount, userInfo })  => {
-  const numberOfResults = resultCount;
-  console.log(userInfo)
-  const users = userInfo;
+  console.log(userInfo);
+
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postPerPage, setPostsPerPage ] = useState(5);
+  const totalPosts = userInfo.length;
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = userInfo.slice(indexOfFirstPost, indexOfLastPost)
+
+  const goToPage = (number) => {
+    setCurrentPage(number);
+  }
+
 
   return (
     <div>
-      <ResultsHeader numberOfResults={numberOfResults} />
-      <SearchResults users={users} />
+      <ResultsHeader numberOfResults={resultCount} />
+      <SearchResults users={currentPosts} />
+      <Pagination postPerPage={postPerPage} totalPosts={totalPosts} goToPage={goToPage} />
     </div>  
   );
 }
@@ -18,7 +31,7 @@ const SearchResults = ({ users }) => {
   console.log(users)
 
   const content = users.map(user => {
-    return <UserCard key={user.login} user={user} />
+    return <UserCard key={user.id} user={user} />
   })
 
   return (

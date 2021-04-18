@@ -5,10 +5,10 @@ const NavBar = ({ didSearch, setSearch }) => {
     <nav className="navbar">
       <ul className="navbar-nav">
         <NavItem>
-          <span className="nav-title" style={{fontSize: '1.4rem'}} >{"Github User Search"}</span>
+          {didSearch && <SearchBar setSearch={setSearch} />}
         </NavItem>
         <NavItem>
-          {didSearch && <SearchBar setSearch={setSearch} />}
+          <span className="nav-title" style={{fontSize: '1.4rem'}} >{"Github User Search"}</span>
         </NavItem>
       </ul>
     </nav>

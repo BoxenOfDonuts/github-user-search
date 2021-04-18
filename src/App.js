@@ -23,7 +23,7 @@ const App = () => {
 
   const setSearch = (search) => {
     const sanitizedSearch = sanitizeSearch(search);
-    // setURL(`${searchUsersURL}?q=${sanitizedSearch}&per_page=10`)
+    // setURL(`${searchUsersURL}?q=${sanitizedSearch}&per_page=20&page=1}`)
     setResponse(fakeInfo)
   }
 
@@ -32,6 +32,13 @@ const App = () => {
       setResponse(fetchedData);
     }
   }, [isLoading])
+
+  // useEffect(() => {
+  //   const regex = /&page=\d+/i
+  //   const newURL = url.replace(regex, `page=${currentPage}`);
+  //   console.log(newURL)
+  //   setURL(newURL);
+  // }, [currentPage])
 
   return (
     <div className="app">
