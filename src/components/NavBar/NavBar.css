@@ -42,3 +42,8 @@
 .navbar-nav input {
   width: 200px;
 }
+
+.reset-link {
+  text-decoration: none;
+  color: inherit
+}

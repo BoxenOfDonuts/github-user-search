@@ -22,13 +22,12 @@ const App = () => {
   const [ isLoading, fetchedData, resultCount, error ] = useHttp(url, [url])
   const [ currentSearch, setCurrentSearch ] = useState('');
   const [ response, setResponse ] = useState(null);
-  const [ usingFake, setUsingFake ] = useState(true);
+  const [ usingFake, setUsingFake ] = useState(false);
 
   const setSearch = (search) => {
     const sanitizedSearch = sanitizeSearch(search);
     setCurrentSearch(sanitizedSearch)
-    // setURL(buildURL(sanitizedSearch, false))
-    setResponse(fakeInfo)
+    setURL(buildURL(sanitizedSearch, false))
   }
 
   const setSort = (sort) => {
@@ -40,6 +39,12 @@ const App = () => {
     setResponse(fakeInfo);
   }
 
+  const resetPage = () => {
+    setUsingFake(false);
+    setCurrentSearch('');
+    setResponse(null);
+  }
+
   useEffect(() => {
     if (fetchedData && !isLoading && !error) {
       setUsingFake(false);
@@ -47,9 +52,10 @@ const App = () => {
     }
   }, [isLoading])
 
+  // I mean should probably be using react router
   return (
     <div className="app">
-      <NavBar didSearch={Boolean(response)} setSearch={setSearch} />
+      <NavBar didSearch={Boolean(response)} setSearch={setSearch} reset={resetPage} />
         <LandingPage>
           {!response && <SearchPage setSearch={setSearch} />}
           {response && <ResultsPage userInfo={response} resultCount={resultCount} setSort={setSort} />}

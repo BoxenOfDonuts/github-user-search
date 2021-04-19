@@ -2,13 +2,15 @@
 import './NavBar.css';
 import SearchBar from '../Searchbar/Searchbar';
 
-const NavBar = ({ didSearch, setSearch }) => {
+const NavBar = ({ didSearch, setSearch, reset }) => {
   return (
     <nav className="navbar">
       <ul className="navbar-nav">
         {didSearch && <SearchBar setSearch={setSearch} />}
         <NavItem>
-          <span className="nav-title" >{"Github User Search"}</span>
+          <a href="!#" onClick={reset} className="reset-link">
+            <span className="nav-title" >{"Github User Search"}</span>
+          </a>
         </NavItem>
       </ul>
     </nav>
