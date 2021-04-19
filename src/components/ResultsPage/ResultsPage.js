@@ -3,7 +3,7 @@ import UserCard from '../UserCard/UserCard';
 import Pagination from '../Pagination/Pagination';
 import { useState } from 'react';
 
-const ResultsPage = ({ resultCount, userInfo })  => {
+const ResultsPage = ({ resultCount, userInfo, setSort })  => {
   console.log(userInfo);
 
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -20,8 +20,13 @@ const ResultsPage = ({ resultCount, userInfo })  => {
 
   return (
     <div className="results-page">
-      <ResultsHeader numberOfResults={resultCount} />
-      <SearchResults users={currentPosts} />
+      <ResultsHeader
+        numberOfResults={resultCount} 
+        setSort={setSort} 
+      />
+      <SearchResults
+        users={currentPosts}
+      />
       <Pagination
         postPerPage={postPerPage}
         totalPosts={totalPosts}
@@ -46,23 +51,30 @@ const SearchResults = ({ users }) => {
   );
 }
 
-const ResultsHeader = ({ numberOfResults }) => {
+const ResultsHeader = ({ numberOfResults, setSort }) => {
   
   return (
     <div className="results-header">
       <p className="header-item">{'Results '+ numberOfResults}</p>
-      <SortResults className="header-item" />
+      <SortResults onSort={setSort} className="header-item" />
     </div>
   );
 }
 
-const SortResults = () => {
+const SortResults = ({ onSort }) => {
+  const onSelect = (e) => {
+    const { value } = e.target;
+    onSort(value)
+  } 
+
   return (
-    <form>
+    <form onChange={onSelect}>
       <label htmlFor="sortBy">
         <select name="sortBy" id="sortBy">
-          <option value="Best Match">Best Match</option>
-          <option value="Most Followers">Most Followers</option>
+          <option value="best">Best Match</option>
+          <option value="followers">Most Followers</option>
+          <option value="repositories">Most Repositories</option>
+          <option value="joined">Most Recently Joined</option>
         </select>
       </label>
     </form>
