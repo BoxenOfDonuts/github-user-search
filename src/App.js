@@ -4,6 +4,7 @@ import ResultsPage from './components/ResultsPage/ResultsPage';
 import SearchPage from './components/SearchPage/SearchPage';
 import { useEffect, useState } from 'react';
 import { fakeInfo } from './helpers/response';
+import { ErrorMessage } from './components/ErrorMessage/ErrorMessage';
 import './App.css';
 const searchUsersURL = 'https://api.github.com/search/users';
 
@@ -26,7 +27,6 @@ const App = () => {
     const sanitizedSearch = sanitizeSearch(search);
     setCurrentSearch(sanitizedSearch)
     // setURL(buildURL(sanitizedSearch, false))
-    setResponse(fakeInfo)
   }
 
   const setSort = (sort) => {
@@ -50,16 +50,6 @@ const App = () => {
     </div>
   );
 };
-
-const ErrorMessage = ({error}) => {
-  console.log(error)
-  return (
-    <div className="error-message">
-      <h1>Oh Oh... Something Went Wrong</h1>
-      <h3>{error.message}</h3>
-    </div>
-  );
-}
 
 const sanitizeSearch = (search) => {
   return encodeURIComponent(search.trim());

@@ -1,0 +1,12 @@
+.error-message {
+  margin-top: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message > * {
+  margin: 2px;
+}
