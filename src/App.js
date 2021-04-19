@@ -18,7 +18,7 @@ const LandingPage = ({ children }) => {
 
 const App = () => {
   const [ url, setURL ] = useState(false)
-  const [ isLoading, fetchedData, resultCount ] = useHttp(url, [url])
+  const [ isLoading, fetchedData, resultCount, error ] = useHttp(url, [url])
   const [ currentSearch, setCurrentSearch ] = useState('');
   const [ response, setResponse ] = useState(null)
 
@@ -30,21 +30,14 @@ const App = () => {
   }
 
   const setSort = (sort) => {
-    // setURL(buildURL(currentSearch, sort))
+    setURL(buildURL(currentSearch, sort))
   }
 
   useEffect(() => {
-    if (fetchedData && !isLoading) {
+    if (fetchedData && !isLoading && !error) {
       setResponse(fetchedData);
     }
   }, [isLoading])
-
-  useEffect(() => {
-    // const regex = /&page=\d+/i
-    // const newURL = url.replace(regex, `page=${}`);
-    // console.log(newURL)
-    // setURL(newURL);
-  })
 
   return (
     <div className="app">
@@ -52,10 +45,21 @@ const App = () => {
         <LandingPage>
           {!response && <SearchPage setSearch={setSearch} />}
           {response && <ResultsPage userInfo={response} resultCount={resultCount} setSort={setSort} />}
+          {error && <ErrorMessage error={error}/>}
         </LandingPage>
     </div>
   );
 };
+
+const ErrorMessage = ({error}) => {
+  console.log(error)
+  return (
+    <div className="error-message">
+      <h1>Oh Oh... Something Went Wrong</h1>
+      <h3>{error.message}</h3>
+    </div>
+  );
+}
 
 const sanitizeSearch = (search) => {
   return encodeURIComponent(search.trim());

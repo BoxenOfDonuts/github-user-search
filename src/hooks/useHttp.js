@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 export const useHttp= (url, dependencies ) => {
   const [isLoading, setIsLoading] = useState(false);
   const [fetchData, setFetchedData] = useState(false);
-  const [ resultCount, setResultCount ] = useState(0)
+  const [ resultCount, setResultCount ] = useState(0);
+  const [ error, setError ] = useState('');
 
   useEffect(() => {
     if (!url || url === '') return ;
@@ -29,6 +30,7 @@ export const useHttp= (url, dependencies ) => {
             .then(response => {
               if (!response.ok) {
                 if (response.status === 403) {
+                  setError({message: 'Rate Limited'})
                   throw new Error('Probably rate limited :o')
                 }
                 throw new Error('Failed to fetch user');
@@ -48,5 +50,5 @@ export const useHttp= (url, dependencies ) => {
       });
   }, dependencies)
 
-  return [isLoading, fetchData, resultCount];
+  return [isLoading, fetchData, resultCount, error];
 };

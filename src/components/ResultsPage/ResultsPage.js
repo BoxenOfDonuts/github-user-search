@@ -4,8 +4,7 @@ import Pagination from '../Pagination/Pagination';
 import { useState } from 'react';
 
 const ResultsPage = ({ resultCount, userInfo, setSort })  => {
-  console.log(userInfo);
-
+  
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postPerPage, setPostsPerPage ] = useState(5);
   const totalPosts = userInfo.length;
@@ -20,21 +19,31 @@ const ResultsPage = ({ resultCount, userInfo, setSort })  => {
 
   return (
     <div className="results-page">
-      <ResultsHeader
-        numberOfResults={resultCount} 
-        setSort={setSort} 
-      />
-      <SearchResults
-        users={currentPosts}
-      />
-      <Pagination
-        postPerPage={postPerPage}
-        totalPosts={totalPosts}
-        goToPage={goToPage}
-        currentPage={currentPage}
-      />
+      <Results>
+        <ResultsHeader
+          numberOfResults={resultCount} 
+          setSort={setSort} 
+        />
+        <SearchResults
+          users={currentPosts}
+        />
+        <Pagination
+          postPerPage={postPerPage}
+          totalPosts={totalPosts}
+          goToPage={goToPage}
+          currentPage={currentPage}
+        />
+      </Results>
     </div>  
   );
+}
+
+const Results = ({ children }) => {
+  return (
+    <>
+      {children}
+    </>  
+    );
 }
 
 const SearchResults = ({ users }) => {
