@@ -8,7 +8,7 @@ const NavBar = ({ didSearch, setSearch, reset }) => {
       <ul className="navbar-nav">
         {didSearch && <SearchBar setSearch={setSearch} />}
         <NavItem>
-          <a href="!#" onClick={reset} className="reset-link">
+          <a href="#" onClick={reset} className="reset-link">
             <span className="nav-title" >{"Github User Search"}</span>
           </a>
         </NavItem>
