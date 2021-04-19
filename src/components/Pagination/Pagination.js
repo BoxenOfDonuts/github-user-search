@@ -1,3 +1,5 @@
+import './Pagination.css';
+
 const Pagination = ({ postPerPage, totalPosts, goToPage, currentPage }) => {
   const pageNumbers = [];
   
@@ -5,8 +7,13 @@ const Pagination = ({ postPerPage, totalPosts, goToPage, currentPage }) => {
     pageNumbers.push(i);
   }
 
-  const pageLinks = pageNumbers.map(number => (
-    <li key={number} className="page-number">
+  const pageLinks = pageNumbers.map((number, index) => {
+    let classname = "page-number";
+    if (currentPage === index+1) {
+      classname += ' page-active';
+    }
+
+    return (<li key={number} className={classname}>
       <a
         href="!#"
         className="page-link"
@@ -14,11 +21,12 @@ const Pagination = ({ postPerPage, totalPosts, goToPage, currentPage }) => {
       >
         {number}
       </a>
-    </li>
-  ))
+    </li>)
+  })
 
   return (
     <nav>
+      <ul className='pagination'>
       <PrevNextPagination
         currentPage={currentPage}
         pageNumbers={pageNumbers}
@@ -26,9 +34,7 @@ const Pagination = ({ postPerPage, totalPosts, goToPage, currentPage }) => {
         increment={-1}
         name={'Previous'}
       />
-      <ul className='pagination'>
         {pageLinks}
-      </ul>
       <PrevNextPagination
         currentPage={currentPage}
         pageNumbers={pageNumbers}
@@ -36,27 +42,30 @@ const Pagination = ({ postPerPage, totalPosts, goToPage, currentPage }) => {
         increment={1}
         name={'Next'}
       />
+      </ul>
     </nav>
   );
 }
 
 const PrevNextPagination = ({ currentPage, pageNumbers, goToPage, name, increment }) => {
-  let movePageClass = 'page-link change-page';
+  let movePageClass = '';
 
-  if (currentPage === pageNumbers[pageNumbers.length -1]) {
+  if (currentPage === pageNumbers[pageNumbers.length -1] && name === 'Next') {
     movePageClass += ' next-disabled';
-  } else if (currentPage === pageNumbers[0]) {
-    movePageClass += ' next-disabled';
+  } else if (currentPage === pageNumbers[0] && name === 'Previous') {
+    movePageClass += ' prev-disabled';
   }
 
   return (
-    <a
-      href='!#'
-      className={movePageClass}
-      onClick={() => goToPage(currentPage + increment)}
-    >
-      {name}
-    </a>
+    <li className={movePageClass}>
+      <a
+        href='!#'
+        className={'page-link change-page'}
+        onClick={() => goToPage(currentPage + increment)}
+      >
+        {name}
+      </a>
+    </li>
   );
 
 }

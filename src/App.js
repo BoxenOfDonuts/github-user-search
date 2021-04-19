@@ -1,18 +1,18 @@
 import { useHttp } from './hooks/useHttp';
 import NavBar from './components/NavBar/NavBar';
 import ResultsPage from './components/ResultsPage/ResultsPage';
-import SearchBar from './components/Searchbar/Searchbar';
+import SearchPage from './components/SearchPage/SearchPage';
 import { useEffect, useState } from 'react';
-import './App.css';
 import { fakeInfo } from './helpers/response';
+import './App.css';
 const searchUsersURL = 'https://api.github.com/search/users';
 
 
 const LandingPage = ({ children }) => {
   return (
-    <>
+    <div className='landing-container'>
       {children}
-    </>
+    </div>
   );
 }
 
@@ -44,7 +44,7 @@ const App = () => {
     <div className="app">
       <NavBar didSearch={Boolean(response)} setSearch={setSearch} />
         <LandingPage>
-          {!response && <SearchBar setSearch={setSearch} />}
+          {!response && <SearchPage setSearch={setSearch} />}
           {response && <ResultsPage userInfo={response} resultCount={resultCount} />}
         </LandingPage>
     </div>

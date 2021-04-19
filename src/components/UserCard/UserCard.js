@@ -1,9 +1,8 @@
 const UserCard = ({ user }) => {
   return (
     <div className="user-card">
+      <Avatar avatarURL={user.avatar_url} />
       <UserInfo user={user} />
-      <UserBio bio={user.bio} />
-      <UserFooter location={user.location} email={user.email}/>
     </div>
   );
 }
@@ -23,10 +22,11 @@ const Avatar = ({ avatarURL }) => {
 const UserInfo = ({ user }) => {
   return (
     <>
-      <Avatar avatarURL={user.avatar_url} />
       <div className="user-info main-info">
-          <p>{user.name}</p>
-          <p>{user.login}</p>
+          <a href={user.html_url} className="user-link user-name">{user.name}</a>
+          <a href={user.html_url} className="user-link secondary">{user.login}</a>
+          <UserBio bio={user.bio} />
+          <UserFooter location={user.location} email={user.email}/>
       </div>
     </>
   );
@@ -42,7 +42,7 @@ const UserBio = ({ bio }) => {
 
 const UserFooter = ({ location, email }) => {
   return (
-    <div className="user-info additional-info">
+    <div className="user-info additional-info secondary">
       <p>{location}</p>
       <p>{email}</p>
   </div>

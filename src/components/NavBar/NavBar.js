@@ -1,14 +1,14 @@
+
+import './NavBar.css';
 import SearchBar from '../Searchbar/Searchbar';
 
 const NavBar = ({ didSearch, setSearch }) => {
   return (
     <nav className="navbar">
       <ul className="navbar-nav">
+        {didSearch && <SearchBar setSearch={setSearch} />}
         <NavItem>
-          {didSearch && <SearchBar setSearch={setSearch} />}
-        </NavItem>
-        <NavItem>
-          <span className="nav-title" style={{fontSize: '1.4rem'}} >{"Github User Search"}</span>
+          <span className="nav-title" >{"Github User Search"}</span>
         </NavItem>
       </ul>
     </nav>
@@ -17,7 +17,7 @@ const NavBar = ({ didSearch, setSearch }) => {
 
 const NavItem = ({ children }) => {
   return (
-    <li style={{color: 'white'}}>{children}</li>
+    <li className='nav-item'>{children}</li>
   );
 };
 

@@ -19,10 +19,15 @@ const ResultsPage = ({ resultCount, userInfo })  => {
 
 
   return (
-    <div>
+    <div className="results-page">
       <ResultsHeader numberOfResults={resultCount} />
       <SearchResults users={currentPosts} />
-      <Pagination postPerPage={postPerPage} totalPosts={totalPosts} goToPage={goToPage} />
+      <Pagination
+        postPerPage={postPerPage}
+        totalPosts={totalPosts}
+        goToPage={goToPage}
+        currentPage={currentPage}
+      />
     </div>  
   );
 }
@@ -45,8 +50,8 @@ const ResultsHeader = ({ numberOfResults }) => {
   
   return (
     <div className="results-header">
-      <p>{numberOfResults}</p>
-      <SortResults />
+      <p className="header-item">{'Results '+ numberOfResults}</p>
+      <SortResults className="header-item" />
     </div>
   );
 }
