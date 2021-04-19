@@ -47,7 +47,6 @@ const Results = ({ children }) => {
 }
 
 const SearchResults = ({ users }) => {
-  console.log(users)
 
   const content = users.map(user => {
     return <UserCard key={user.id} user={user} />

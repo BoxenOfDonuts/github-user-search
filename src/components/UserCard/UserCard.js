@@ -1,3 +1,5 @@
+import './UserCard.css';
+
 const UserCard = ({ user }) => {
   return (
     <div className="user-card">
@@ -16,7 +18,7 @@ const Avatar = ({ avatarURL }) => {
         src={avatarURL}
       />
   </div>
-  )
+  );
 }
 
 const UserInfo = ({ user }) => {

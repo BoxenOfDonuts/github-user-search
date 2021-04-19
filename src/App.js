@@ -22,12 +22,13 @@ const App = () => {
   const [ isLoading, fetchedData, resultCount, error ] = useHttp(url, [url])
   const [ currentSearch, setCurrentSearch ] = useState('');
   const [ response, setResponse ] = useState(null);
-  const [ usingFake, setUsingFake ] = useState(false);
+  const [ usingFake, setUsingFake ] = useState(true);
 
   const setSearch = (search) => {
     const sanitizedSearch = sanitizeSearch(search);
     setCurrentSearch(sanitizedSearch)
-    setURL(buildURL(sanitizedSearch, false))
+    // setURL(buildURL(sanitizedSearch, false))
+    setResponse(fakeInfo)
   }
 
   const setSort = (sort) => {

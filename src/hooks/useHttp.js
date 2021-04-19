@@ -1,4 +1,6 @@
 // I've used in other projects but found the core of the logic in a youtube about creating custom hooks
+// heavily modified for this project
+
 import { useEffect, useState } from 'react';
 
 
@@ -22,7 +24,6 @@ export const useHttp= (url, dependencies ) => {
         return response.json()
       })
       .then(data => {
-        console.log(data)
         setResultCount(data.total_count)
         return data
       })
@@ -40,7 +41,6 @@ export const useHttp= (url, dependencies ) => {
               return response.json()
             })
             .then(data => {
-              console.log(data)
               setFetchedData(prevState => [...prevState, data])
             })
         }));
