@@ -11,10 +11,12 @@ export const useHttp= (url, dependencies ) => {
   useEffect(() => {
     if (!url || url === '') return ;
     setIsLoading(true);
+    setError('');
     setFetchedData([])
     fetch(url)
       .then(response => {
         if (!response.ok) {
+          setError({message: 'failed to search users'})
           throw new Error('Failed to fetch.');
         }
         return response.json()

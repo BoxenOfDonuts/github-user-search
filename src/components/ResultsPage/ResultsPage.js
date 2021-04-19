@@ -4,7 +4,7 @@ import Pagination from '../Pagination/Pagination';
 import { useState } from 'react';
 
 const ResultsPage = ({ resultCount, userInfo, setSort })  => {
-  
+
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postPerPage, setPostsPerPage ] = useState(5);
   const totalPosts = userInfo.length;

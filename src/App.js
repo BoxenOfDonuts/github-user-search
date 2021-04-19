@@ -21,20 +21,27 @@ const App = () => {
   const [ url, setURL ] = useState(false)
   const [ isLoading, fetchedData, resultCount, error ] = useHttp(url, [url])
   const [ currentSearch, setCurrentSearch ] = useState('');
-  const [ response, setResponse ] = useState(null)
+  const [ response, setResponse ] = useState(null);
+  const [ usingFake, setUsingFake ] = useState(false);
 
   const setSearch = (search) => {
     const sanitizedSearch = sanitizeSearch(search);
     setCurrentSearch(sanitizedSearch)
-    // setURL(buildURL(sanitizedSearch, false))
+    setURL(buildURL(sanitizedSearch, false))
   }
 
   const setSort = (sort) => {
     setURL(buildURL(currentSearch, sort))
   }
 
+  const useFakeInfo = () => {
+    setUsingFake(true);
+    setResponse(fakeInfo);
+  }
+
   useEffect(() => {
     if (fetchedData && !isLoading && !error) {
+      setUsingFake(false);
       setResponse(fetchedData);
     }
   }, [isLoading])
@@ -45,7 +52,7 @@ const App = () => {
         <LandingPage>
           {!response && <SearchPage setSearch={setSearch} />}
           {response && <ResultsPage userInfo={response} resultCount={resultCount} setSort={setSort} />}
-          {error && <ErrorMessage error={error}/>}
+          {error && !usingFake && <ErrorMessage error={error} useFake={useFakeInfo}/>}
         </LandingPage>
     </div>
   );
