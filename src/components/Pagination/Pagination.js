@@ -15,7 +15,7 @@ const Pagination = ({ postPerPage, totalPosts, goToPage, currentPage }) => {
 
     return (<li key={number} className={classname}>
       <a
-        href="!#"
+        href="#"
         className="page-link"
         onClick={() => goToPage(number) }
       >
@@ -59,7 +59,7 @@ const PrevNextPagination = ({ currentPage, pageNumbers, goToPage, name, incremen
   return (
     <li className={movePageClass}>
       <a
-        href='!#'
+        href='#'
         className={'page-link change-page'}
         onClick={() => goToPage(currentPage + increment)}
       >
